@@ -26,7 +26,7 @@
   docker_container:
     name: qdr
     image: nfvpe/qpid-dispatch-router
-    published_ports: 172.17.0.1:5672:5672
+    exposed_ports: 5672/tcp
     volumes: "{{ ansible_env.HOME }}/qdr.conf.d/:/etc/qdr.conf.d/:Z"
     restart: yes
     command: "--config=/etc/qdr.conf.d/qdrouterd.conf"
