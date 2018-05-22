@@ -1,5 +1,7 @@
 ---
 - name: Install docker-py
+  become: true
+  become_user: root
   package:
     name: docker-python
     state: present
@@ -28,16 +30,3 @@
     volumes: "{{ ansible_env.HOME }}/qdr.conf.d/:/etc/qdr.conf.d/:Z"
     restart: yes
     command: "--config=/etc/qdr.conf.d/qdrouterd.conf"
-  tags:
-    - qdr-cloud-side
-
-- name: Start QDR container (telemetry side)
-  docker_container:
-    name: qdr
-    image: nfvpe/qpid-dispatch-router
-    volumes: "{{ ansible_env.HOME }}/qdr.conf.d/:/etc/qdr.conf.d/:Z"
-    restart: yes
-    network_mode: host
-    command: "--config=/etc/qdr.conf.d/qdrouterd.conf"
-  tags:
-    - qdr-telemetry-side
