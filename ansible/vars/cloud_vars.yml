@@ -11,5 +11,5 @@ listeners:
 connectors:
     - name: central-qdr
       role: inter-router
-      host: qdr-sa-telemetry.apps.nfvpe.site
+      host: blue.qdr-sa-telemetry.apps.nfvpe.site
       port: 20001
