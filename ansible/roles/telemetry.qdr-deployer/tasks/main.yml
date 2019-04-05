@@ -26,6 +26,16 @@
     src: qdrouterd.conf.j2
     dest: "{{ qdr_config_files }}/qdrouterd.conf"
 
+- name: Copy the certificate
+  template:
+    src: tls.crt.j2
+    dest: "{{ qdr_config_files }}/tls.crt"
+
+- name: Copy the key
+  template:
+    src: tls.key.j2
+    dest: "{{ qdr_config_files }}/tls.key"
+
 - name: Start QDR container (cloud side)
   docker_container:
     name: qdr
