@@ -16,8 +16,6 @@ listener {
     port: {{ listener.port }}
 {% if listener.role is defined %}    role: {{ listener.role }}
 {% endif %}
-    authenticatePeer: no
-    saslMechanisms: ANONYMOUS
 }
 
 {% endfor %}
