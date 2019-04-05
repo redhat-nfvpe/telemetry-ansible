@@ -2,7 +2,7 @@
 qdr_dns_servers: 10.19.110.3
 qdr_image: quay.io/interconnectedcloud/qdrouterd
 qdr_image_tag: 1.5.0
-qdr_config_files: /opt/qdrouterd
+qdr_config_files: /opt/qdrouterd/etc
 
 router:
     id_prefix: BAROMETER_ROUTER
@@ -14,6 +14,6 @@ listeners:
 
 connectors:
     - name: central-qdr
-      role: inter-router
-      host: blue.qdr-sa-telemetry.apps.nfvpe.site
-      port: 5673
+      role: edge
+      host: qdr-white-normal-sa-telemetry.apps.dev7.nfvpe.site
+      port: 443
