@@ -6,13 +6,15 @@ qdr_config_files: /opt/qdrouterd/etc
 
 router:
     id_prefix: BAROMETER_ROUTER
-    mode: interior
+    mode: edge
 
 listeners:
     - host: 0.0.0.0
       port: 5672
+      role: normal
     - host: 0.0.0.0
       port: 5673
+      role: normal
 
 connectors:
     - name: central-qdr
