@@ -31,11 +31,16 @@ connector {
     role: {{ connector.role }}
     host: {{ connector.host }}
     port: {{ connector.port }}
-    saslMechanisms: ANONYMOUS
+    sslProfile: default
 }
-
 {% endfor %}
 {% endif %}
+
+sslProfile {
+    name: default
+    certFile: /tmp/tls.crt
+    privateKeyFile: /tmp/tls.key
+}
 # Various address prefix -> distribution pattern
 # configurations:
 #
