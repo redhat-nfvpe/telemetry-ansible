@@ -31,6 +31,7 @@ connector {
     port: {{ connector.port }}
     role: {{ connector.role }}
     sslProfile: default
+    verifyHostname: {{ connector.verify_hostname | default(true) }}
 }
 {% endfor %}
 {% endif %}
