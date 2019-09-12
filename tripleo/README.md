@@ -97,11 +97,31 @@ pass that during overcloud deployment. The custom ceph role looks something like
 The info regarding creating a custom role is found in https://docs.openstack.org/tripleo-docs/latest/install/advanced_deployment/custom_roles.html
 
 So when composable services MetricsQdr and Collectd is enabled along with internal_tls then overcloud should be deployed as 
-    
+
     openstack overcloud deploy \
     ...
     ...
     -r ~/roles_data.yaml \
     ...
     ...
-  
+
+
+# Deploying with distributed compute nodes
+
+If the compute nodes are configured as edge nodes, and are on a separate network to the controller, a few changes are need to the documentation found in https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/13/html-single/spine_leaf_networking/
+
+The following changes are needed to the nodes_data.yaml file:
+
+    parameter_defaults:
+      ...
+      Compute1ExtraConfig:
+        ...
+        tripleo::profile::base::metrics::collectd::amqp_host: "%{hiera('internal_api1')}"
+        tripleo::profile::base::metrics::qdr::listener_addr: "%{hiera('internal_api1')}"
+
+      Compute2ExtraConfig:
+        ...
+        tripleo::profile::base::metrics::collectd::amqp_host: "%{hiera('internal_api2')}"
+        tripleo::profile::base::metrics::qdr::listener_addr: "%{hiera('internal_api2')}"
+
+where internal_api1 and internal_api2 are the corresponding networks for the edge compute nodes.
